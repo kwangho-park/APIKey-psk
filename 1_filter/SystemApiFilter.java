@@ -10,7 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-
+/**
+ * 
+ * system api filter 
+ * 
+ * @author Park_Kwang_Ho
+ *
+ */
 public class SystemApiFilter implements Filter {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());

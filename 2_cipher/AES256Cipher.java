@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 /**
  * 
- * java 확장 패키지 javax lib 를 사용한 AES 암복호화
+ * AES256, HMAC 암호화 (by javax lib) 
  * 
  * @author Park_Kwang_Ho
  *

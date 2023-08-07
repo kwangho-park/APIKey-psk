@@ -29,23 +29,23 @@ public class DeviceSysController extends BaseController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
 	@Autowired
-    DeviceService deviceService;
+    	DeviceService deviceService;
 
 	/**
 	 * device list 전체 조회 또는 특정 디바이스 <br>
 	 *
-	 * @param vo
+	 * @param SearchDeviceDTO 디바이스 조회를 위한 데이터
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "/list")
 	@ResponseBody
-	public Hashtable<String, Object> getDeviceList(@Valid @RequestBody SearchDeviceDTO vo) {
+	public Hashtable<String, Object> getDeviceList(@Valid @RequestBody SearchDeviceDTO searchDeviceDTO ) {
 
 		Hashtable<String, Object> result = null;
 
 
 		try {
-			result = deviceService.getDeviceList(vo);
+			result = deviceService.getDeviceList(searchDeviceDTO);
 			logger.debug("device 조회 또는 검색 결과 : "+result.get("result"));
 			logger.debug("device list :" +result.get("list").toString());
 
