@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.com.dreamsecurity.hotp.mapper.DeviceMapper">
+	
+	
+	<select id="selectDeviceList" resultType="DeviceVO">
+		SELECT
+			device_name,
+			device_id,
+			secret_key,
+			event_counter
+		FROM
+			tbl_device
+		<where>
+			<if test="searchValue != null and searchValue !=''">
+				<if test="searchType == 'device_name'">
+					AND device_name like CONCAT('%', #{searchValue}, '%')
+				</if>			
+				<if test="searchType == 'device_id'">
+					AND device_id like CONCAT('%', #{searchValue}, '%')
+				</if>
+			</if>
+		</where>
+	</select>
+
+	<select id="selectDeviceListCount" resultType="java.lang.Integer">
+		SELECT
+			COUNT(device_id)
+		FROM
+			tbl_device
+		<where>
+			<if test="searchValue != null and searchValue !=''">
+				<if test="searchType == 'device_name'">
+					AND device_name like CONCAT('%', #{searchValue}, '%')
+				</if>			
+				<if test="searchType == 'device_id'">
+					AND device_id like CONCAT('%', #{searchValue}, '%')
+				</if>
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectDevice" resultType="DeviceVO">
+		SELECT
+			device_name,
+			device_id,
+			secret_key,
+			event_counter
+		FROM
+			tbl_device
+		WHERE
+			device_id = #{device_id}
+	</select>
+	
+	
+	<insert id="insertDevice">
+		INSERT INTO tbl_device (
+			device_name,
+			device_id,
+			secret_key
+		) VALUES (
+			#{device_name},
+			#{device_id},
+			#{secret_key}
+		)
+	</insert>
+	
+	<delete id="deleteDevice">
+		DELETE FROM
+			tbl_device
+		WHERE
+			device_id = #{device_id}
+	</delete>
+	
+	<update id="updateDevice">
+		UPDATE
+			tbl_device
+		SET
+			secret_key = #{secret_key},
+			event_counter = #{event_counter}
+		WHERE
+			device_id = #{device_id}
+	</update>
+	
+	<update id="resetDevice">
+		UPDATE
+			tbl_device
+		SET
+			event_counter = '0'
+		WHERE
+			device_id = #{device_id}
+	</update>
+</mapper>
