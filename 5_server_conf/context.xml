@@ -21,7 +21,6 @@
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
     <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
 
-
    <Resource name="jdbc/mysql" auth="Container" type="javax.sql.DataSource"
               maxActive="10" maxIdle="3" maxWait="10000"
               username="root" password="root"
@@ -30,14 +29,4 @@
               closeMethod="close" />
 
 
-    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
-    <!--
-    <Manager pathname="" />
-    -->
-
-    <!-- Uncomment this to enable Comet connection tacking (provides events
-         on session expiration as well as webapp lifecycle) -->
-    <!--
-    <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
-    -->
 </Context>
